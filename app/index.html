@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app" id="app">
+  <section class="stage" id="stage">
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="cover" width="1080" height="1080" aria-label="Cover preview. Click a panel to select it, drag to reposition, scroll to zoom."></canvas>
+      <div class="drop-hint" id="dropHint">Drop a photo anywhere</div>
+    </div>
+    <p class="stage-note">Click a panel to select it · drag to reposition · scroll or use the slider to zoom</p>
+  </section>
+
+  <aside class="panel">
+    <header class="brand">
+      <h1>Vice City <span>Cover Studio</span></h1>
+      <p>Turn any photo into GTA-style multi-panel cover art. Everything happens in your browser — photos never leave this page.</p>
+    </header>
+
+    <section class="group">
+      <h2>1 · Photo</h2>
+      <label class="file-btn">
+        <input id="photo" type="file" accept="image/*">
+        <span>Choose a photo…</span>
+      </label>
+      <div class="samples" id="samples">
+        <button type="button" class="sample" data-sample="pier">
+          <img src="samples/pier.jpg" alt="Sample: fisherman on a pier">
+          <span>Pier</span>
+        </button>
+        <button type="button" class="sample" data-sample="boulevard">
+          <img src="samples/boulevard.jpg" alt="Sample: convertible at sunset">
+          <span>Boulevard</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>2 · Layout</h2>
+      <div class="choices" id="layouts">
+        <button type="button" data-layout="grid4" class="choice active"><i class="mini grid4"></i>Grid 2×2</button>
+        <button type="button" data-layout="hero" class="choice"><i class="mini hero"></i>Hero + 2</button>
+        <button type="button" data-layout="strip3" class="choice"><i class="mini strip3"></i>Triptych</button>
+        <button type="button" data-layout="duo" class="choice"><i class="mini duo"></i>Wide + 2</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>3 · Panel <span class="sel" id="selLabel">1</span></h2>
+      <label class="slider-row">Zoom
+        <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <label class="slider-row">Grade
+        <select id="grade">
+          <option value="sunset">Vice Sunset</option>
+          <option value="neon">Neon Nights</option>
+          <option value="golden">Golden Hour</option>
+          <option value="noir">Mono Noir</option>
+          <option value="acid">Acid Trip</option>
+        </select>
+      </label>
+      <div class="row">
+        <button type="button" id="gradeAll" class="ghost">Grade all panels</button>
+        <button type="button" id="shuffle" class="ghost">Shuffle crops</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>4 · Lettering</h2>
+      <label class="field">Top tag
+        <input id="tag" type="text" maxlength="24" value="Vice City">
+      </label>
+      <label class="field">Caption
+        <input id="caption" type="text" maxlength="28" value="Sunset Heist">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitle" type="text" maxlength="36" value="A Vice City Story">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>5 · Export</h2>
+      <label class="slider-row">Size
+        <select id="size">
+          <option value="1080x1080" selected>Square · 1080 × 1080</option>
+          <option value="1080x1350">Portrait · 1080 × 1350</option>
+          <option value="1920x1080">Wide · 1920 × 1080</option>
+          <option value="1080x1920">Story · 1080 × 1920</option>
+        </select>
+      </label>
+      <button type="button" id="export" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
